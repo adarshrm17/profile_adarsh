@@ -79,4 +79,32 @@ document.addEventListener('DOMContentLoaded', () => {
             statusDiv.className = 'form-status';
         }
     }
+    
+    // Theme Toggle Logic
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+
+    // Get current theme from localStorage or system preference
+    const currentTheme = localStorage.getItem("theme");
+    if (currentTheme === "dark") {
+        document.documentElement.setAttribute("data-theme", "dark");
+    } else if (currentTheme === "light") {
+        document.documentElement.setAttribute("data-theme", "light");
+    } else if (prefersDarkScheme.matches) {
+        document.documentElement.setAttribute("data-theme", "dark");
+    }
+
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener("click", () => {
+            let theme = document.documentElement.getAttribute("data-theme");
+            // Treat missing attribute as light if user preference wasn't explicitly dark
+            if (theme === "dark") {
+                document.documentElement.setAttribute("data-theme", "light");
+                localStorage.setItem("theme", "light");
+            } else {
+                document.documentElement.setAttribute("data-theme", "dark");
+                localStorage.setItem("theme", "dark");
+            }
+        });
+    }
 });
