@@ -1,4 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Skip link: pressing Enter on a link fires click in all browsers
+    const skipLink = document.querySelector('.skip-link');
+    if (skipLink) {
+        skipLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.getElementById('main-content');
+            if (target) {
+                target.setAttribute('tabindex', '-1');
+                target.focus();
+            }
+        });
+    }
+
     const contactForm = document.getElementById('contact-form');
     
     if (contactForm) {
