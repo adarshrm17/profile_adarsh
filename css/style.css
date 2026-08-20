@@ -81,13 +81,16 @@ body {
     left: 0;
     background: var(--primary-color);
     color: var(--surface-color);
-    padding: 8px;
+    padding: 8px 16px;
     z-index: 100;
     text-decoration: none;
     transition: top 0.2s;
+    border-radius: 0 0 var(--border-radius) 0;
 }
 
-.skip-link:focus {
+.skip-link:focus,
+.skip-link:hover,
+.skip-link:active {
     top: 0;
 }
 
